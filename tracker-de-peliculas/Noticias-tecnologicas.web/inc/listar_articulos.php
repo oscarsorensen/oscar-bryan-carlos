@@ -1,10 +1,11 @@
 <?php
 $host = "localhost";
-$user = "proyecto";
-$pass = "Proyecto123$";
+$user = "peliculas_app";
+$pass = "Peliculas123$";
 $db   = "proyecto_peliculas";
 
 $conexion = new mysqli($host, $user, $pass, $db);
+
 if ($conexion->connect_error) {
     die("Connection failed");
 }

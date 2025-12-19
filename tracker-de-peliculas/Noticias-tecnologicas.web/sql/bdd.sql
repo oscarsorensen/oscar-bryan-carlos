@@ -2,6 +2,18 @@
 CREATE DATABASE IF NOT EXISTS proyecto_peliculas;
 USE proyecto_peliculas;
 
+-- Usuario para bdd
+CREATE USER 'peliculas_app'@'localhost'
+IDENTIFIED BY 'Peliculas123$';
+
+GRANT ALL PRIVILEGES
+ON proyecto_peliculas.*
+TO 'peliculas_app'@'localhost';
+
+FLUSH PRIVILEGES;
+
+
+
 -- Tabla: usuarios
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
