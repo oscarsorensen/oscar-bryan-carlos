@@ -2,14 +2,14 @@
 <!doctype html>
 <html lang="es">
 	<head>
-  	<title>El Oscar - Noticias tecnológicas</title>
+  	<title>Chamitos Movie Club</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/estilo.css">
   </head>
   <body>
   	<header>
-    	<h1>El Oscar</h1>
-      <h2>Noticias tecnológicas</h2>
+    	<h1>Chamitos Movie Club</h1>
+      <h2>Tracker de peliculas</h2>
     </header>
     <main>
     	<?php include "inc/listar_articulos.php"; ?>
