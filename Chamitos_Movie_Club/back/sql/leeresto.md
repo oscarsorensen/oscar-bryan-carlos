@@ -1,0 +1,1 @@
+Aqui teneis la SQL que deberiais poner i nnuestraordenador. Es el base de datos
