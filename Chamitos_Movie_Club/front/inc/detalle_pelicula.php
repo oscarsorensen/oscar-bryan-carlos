@@ -6,7 +6,8 @@
  * Se incluye desde front/movie.php.
  */
 
-include "db.php";
+ include __DIR__ . "/../../back/inc/db.php";
+
 
 /* Check that the movie id exists */
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {

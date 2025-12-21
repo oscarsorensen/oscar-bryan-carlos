@@ -1,49 +1,48 @@
 <?php
+include __DIR__ . "/../db.php";
 
-// Primero traemos el formulario de insertar
-// Y luego lo rellenamos de datos (los datos a actualizar)
+/* Traemos la película a editar */
+$sql = "SELECT * FROM peliculas WHERE id_pelicula = ".$_GET['id'].";";
 
-		$host = "localhost";
-    $user = "periodico";
-    $pass = "Periodico123$";
-    $db   = "periodico";
+$resultado = $conexion->query($sql);
 
-    $conexion = new mysqli($host, $user, $pass, $db);
-
-    $sql = "SELECT * FROM noticias WHERE id = ".$_GET['id'].";";
-
-    $resultado = $conexion->query($sql);
-    while ($fila = $resultado->fetch_assoc()) {
+while ($fila = $resultado->fetch_assoc()) {
 ?>
 
-    <form action="inc/update/procesaformulario.php" method="POST">
-    	<input type="hidden" name="id" value="<?= $fila['id'] ?>"> <!-- OJO A ESTE CAMPO OCULTO -->
-      <div class="controlformulario">
-        <label for="titulo">Título de la nueva noticia</label>
-        <input type="text" name="titulo" id="titulo" value="<?= $fila['titulo'] ?>">
-      </div>
+<form action="inc/update/procesaformulario.php" method="POST">
 
-      <div class="controlformulario">
-        <label for="contenido">Contenido de la nueva noticia</label>
-        <textarea id="contenido" name="contenido"><?= $fila['contenido'] ?></textarea>
-      </div>
+  <!-- ID oculto (muy importante) -->
+  <input type="hidden" name="id_pelicula" value="<?= $fila['id_pelicula'] ?>">
 
-      <div class="controlformulario">
-        <label for="fecha_publicacion">Fecha de la nueva noticia</label>
-        <input type="text" name="fecha_publicacion" id="fecha_publicacion" value="<?= $fila['fecha_publicacion'] ?>">
-      </div>
+  <div class="controlformulario">
+    <label for="nombre">Nombre de la película</label>
+    <input type="text" name="nombre" id="nombre" value="<?= $fila['nombre'] ?>">
+  </div>
 
-      <div class="controlformulario">
-        <label for="autor_id">Autor de la nueva noticia</label>
-        <input type="text" name="autor_id" id="autor_id" value="<?= $fila['autor_id'] ?>">
-      </div>
+  <div class="controlformulario">
+    <label for="director">Director</label>
+    <input type="text" name="director" id="director" value="<?= $fila['director'] ?>">
+  </div>
 
-      <input type="submit">
+  <div class="controlformulario">
+    <label for="fecha_estreno">Fecha de estreno</label>
+    <input type="date" name="fecha_estreno" id="fecha_estreno" value="<?= $fila['fecha_estreno'] ?>">
+  </div>
 
-    </form>
+  <div class="controlformulario">
+    <label for="descripcion">Descripción</label>
+    <textarea name="descripcion" id="descripcion"><?= $fila['descripcion'] ?></textarea>
+  </div>
+
+  <div class="controlformulario">
+    <label for="id_categoria">Categoría (ID 1-15)</label>
+    <input type="number" name="id_categoria" id="id_categoria" value="<?= $fila['id_categoria'] ?>">
+  </div>
+
+  <input type="submit">
+
+</form>
 
 <?php
-
-	} 
-
+}
 ?>

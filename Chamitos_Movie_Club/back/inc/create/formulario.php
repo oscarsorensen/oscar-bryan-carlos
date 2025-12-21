@@ -1,24 +1,30 @@
 <form action="inc/create/procesaformulario.php" method="POST">
-	<div class="controlformulario">
-    <label for="titulo">Título de la nueva noticia</label>
-    <input type="text" name="titulo" id="titulo">
-  </div>
-  
+
   <div class="controlformulario">
-  	<label for="contenido">Contenido de la nueva noticia</label>
-		<textarea id="contenido" name="contenido"></textarea>
+    <label for="nombre">Nombre de la película</label>
+    <input type="text" name="nombre" id="nombre">
   </div>
-  
+
   <div class="controlformulario">
-  	<label for="fecha_publicacion">Fecha de la nueva noticia</label>
-		<input type="text" name="fecha_publicacion" id="fecha_publicacion">
+    <label for="director">Director</label>
+    <input type="text" name="director" id="director">
   </div>
-  
+
   <div class="controlformulario">
-  	<label for="autor_id">Autor de la nueva noticia</label>
-		<input type="text" name="autor_id" id="autor_id">
+    <label for="fecha_estreno">Fecha de estreno</label>
+    <input type="date" name="fecha_estreno" id="fecha_estreno">
   </div>
-  
+
+  <div class="controlformulario">
+    <label for="descripcion">Descripción</label>
+    <textarea name="descripcion" id="descripcion"></textarea>
+  </div>
+
+  <div class="controlformulario">
+    <label for="id_categoria">Categoría (ID)</label>
+    <input type="number" name="id_categoria" id="id_categoria">
+  </div>
+
   <input type="submit">
-  
+
 </form>

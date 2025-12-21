@@ -1,29 +1,32 @@
 <?php
+include __DIR__ . "/../db.php";
 
-  $titulo = $_POST['titulo'];												// Atrapo el titulo que viene del formulario
-  $contenido = $_POST['contenido'];									// Atrapo el contenido que viene del formulario
-  $fecha_publicacion = $_POST['fecha_publicacion'];	// Atrapo la fecha de publiacion que viene del formulario
-  $autor_id = $_POST['autor_id'];										// Atrapo el id de autor
+$nombre         = $_POST['nombre'];
+$director       = $_POST['director'];
+$fecha_estreno  = $_POST['fecha_estreno'];
+$descripcion    = $_POST['descripcion'];
+$id_categoria   = $_POST['id_categoria'];
 
-  $host = "localhost";															// Me conecto a la base de datos
-  $user = "periodico";
-  $pass = "Periodico123$";
-  $db   = "periodico";
+$sql = "
+  INSERT INTO peliculas (
+    nombre,
+    director,
+    fecha_estreno,
+    descripcion,
+    id_categoria
+  ) VALUES (
+    '$nombre',
+    '$director',
+    '$fecha_estreno',
+    '$descripcion',
+    $id_categoria
+  )
+";
 
-  $conexion = new mysqli($host, $user, $pass, $db);	// Ejecuto la conexion
+$conexion->query($sql);
+$conexion->close();
 
-  $sql = "
-  	INSERT INTO noticias VALUES(
-    	NULL,
-      '".$titulo."',
-      '".$contenido."',
-      '".$fecha_publicacion."',
-     	".$autor_id."
-    );
-  ";																								// Lanzo la peticion de insert
-  $conexion->query($sql);
-	
-  $conexion->close();																// Cierro la conexion
-  header("Location: ../../escritorio.php");												// Y me vuelvo al escritorio
-  
+header("Location: /oscar-bryan-carlos/Chamitos_Movie_Club/back/escritorio.php");
+exit;
+
 ?>
