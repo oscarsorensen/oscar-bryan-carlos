@@ -30,14 +30,17 @@ http://localhost:8080/1-Programacion/010.-Programacion-del-servidor/009-Implanta
 <!doctype html>
 <html lang="es">
 	<head>
-  	<title>El Oscar - Panel de control</title>
+  	<title>Chamitos Movie Club</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/estilo.css">
   </head>
   <body>
   	<nav>
-    	<button>Noticias</button>
-      <button>Autores</button>
+    	<button>Que quereis aqui?</button>
+      <button>Ideeas?</button>
+      <button>Mas cosas?</button>
+      <button><a href="index.php">Logout from admin</a></button>
+      <button><a href="../front/index.php">Ver sitio (Frontend)</a></button>
     </nav>
     <main>
     	<?php

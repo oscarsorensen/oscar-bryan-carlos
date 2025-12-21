@@ -1,41 +1,29 @@
 <?php
-	// Esto ha empezado siendo un copia pega de eliminar
-  // Y luego lo modifica
-  
-  // Primero recojo lo que viene del formulario
-  
-	$titulo = $_POST['titulo'];	
-  $contenido = $_POST['contenido'];	
-  $fecha_publicacion = $_POST['fecha_publicacion'];	
-  $autor_id = $_POST['autor_id'];	
-  $id = $_POST['id'];																// Atrapo el id a eliminar
-	
-  // Ahora me conecto a la base de datos
-  
-  $host = "localhost";															// Me conecto a la base de datos
-  $user = "periodico";
-  $pass = "Periodico123$";
-  $db   = "periodico";
+include __DIR__ . "/../db.php";
 
-  $conexion = new mysqli($host, $user, $pass, $db);	// Ejecuto la conexion
+/* Datos del formulario */
+$id_pelicula   = $_POST['id_pelicula'];
+$nombre        = $_POST['nombre'];
+$director      = $_POST['director'];
+$fecha_estreno = $_POST['fecha_estreno'];
+$descripcion   = $_POST['descripcion'];
+$id_categoria  = $_POST['id_categoria'];
 
-	// Le lanzo una peticion de actualización
+/* UPDATE (no INSERT) */
+$sql = "
+  UPDATE peliculas SET
+    nombre = '$nombre',
+    director = '$director',
+    fecha_estreno = '$fecha_estreno',
+    descripcion = '$descripcion',
+    id_categoria = $id_categoria
+  WHERE id_pelicula = $id_pelicula
+";
 
-  $sql = "
-    UPDATE noticias
-    SET 
-    titulo = '".$titulo."',
-    contenido = '".$contenido."',
-    fecha_publicacion = '".$fecha_publicacion."',
-    autor_id = ".$autor_id."
-    WHERE id = ".$id.";
-  ";	// Preparo la peticion																							// Lanzo la peticion de insert
-  echo $sql;
-  $conexion->query($sql);														// Ejecuto la peticion
-	
-  // Y cierro y vuelvo
-  
-  $conexion->close();																// Cierro la conexion
-  header("Location: ../../escritorio.php");					// Y me vuelvo al escritorio
-  
+$conexion->query($sql);
+$conexion->close();
+
+header("Location: /oscar-bryan-carlos/Chamitos_Movie_Club/back/escritorio.php");
+exit;
+
 ?>

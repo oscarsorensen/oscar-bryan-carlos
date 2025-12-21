@@ -1,28 +1,33 @@
 <table>
-  <?php
-    $host = "localhost";
-    $user = "periodico";
-    $pass = "Periodico123$";
-    $db   = "periodico";
+<?php
+include __DIR__ . "/../db.php"; // Incluye la conexión a la base de datos __DIR__ obtiene el directorio actual
 
-    $conexion = new mysqli($host, $user, $pass, $db);
 
-    $sql = "SELECT * FROM noticias;";
+$sql = "
+  SELECT 
+    p.id_pelicula,
+    p.nombre,
+    p.director,
+    p.fecha_estreno,
+    c.nombre_categoria
+  FROM peliculas p
+  LEFT JOIN categorias c ON p.id_categoria = c.id_categoria
+  ORDER BY p.id_pelicula ASC
+";
 
-    $resultado = $conexion->query($sql);
-    while ($fila = $resultado->fetch_assoc()) {
-			echo "<tr>";
-      	echo "<td>".$fila['titulo']."</td>";
-        echo "<td>".$fila['fecha_publicacion']."</td>";
-        echo "<td>".$fila['autor_id']."</td>";
-        echo "<td>".$fila['contenido']."</td>";
-        // NUEVO ///////////////
-        echo "<td><a href='?accion=editar&id=".$fila['id']."' class='editar' title='Cuidado que vas a editar un dato'>🖋</a></td>";
-        echo "<td><a href='?accion=eliminar&id=".$fila['id']."' class='eliminar' title='MAS cuidado todavía porque vas a ELIMINAR un dato'>✖</a></td>";
-      	// NUEVO ///////////////
-      echo "</tr>";
-    }
+$resultado = $conexion->query($sql);
 
-    $conexion->close();
-  ?>
+while ($fila = $resultado->fetch_assoc()) {
+  echo "<tr>";
+    echo "<td>".$fila['nombre']."</td>";
+    echo "<td>".$fila['director']."</td>";
+    echo "<td>".$fila['fecha_estreno']."</td>";
+    echo "<td>".$fila['nombre_categoria']."</td>";
+    echo "<td><a href='?accion=editar&id=".$fila['id_pelicula']."' class='editar' title='Editar película'>🖋</a></td>";
+    echo "<td><a href='?accion=eliminar&id=".$fila['id_pelicula']."' class='eliminar' title='Eliminar película'>✖</a></td>";
+  echo "</tr>";
+}
+
+$conexion->close();
+?>
 </table>

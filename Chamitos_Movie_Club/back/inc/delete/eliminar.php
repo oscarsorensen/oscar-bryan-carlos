@@ -1,18 +1,20 @@
 <?php
+include __DIR__ . "/../db.php";
 
-  $id = $_GET['id'];																// Atrapo el id a eliminar
+/* Atrapo el id de la película a eliminar */
+$id = $_GET['id'];
 
-  $host = "localhost";															// Me conecto a la base de datos
-  $user = "periodico";
-  $pass = "Periodico123$";
-  $db   = "periodico";
+/* Preparo la petición */
+$sql = "DELETE FROM peliculas WHERE id_pelicula = $id";
 
-  $conexion = new mysqli($host, $user, $pass, $db);	// Ejecuto la conexion
+/* Ejecuto la petición */
+$conexion->query($sql);
 
-  $sql = "DELETE FROM noticias WHERE id = ".$id.";";	// Preparo la peticion																		
-  $conexions->query($sql);														// Ejecuto la peticion
-	
-  $conexion->close();																// Cierro la conexion
-  header("Location: escritorio.php");					// Y me vuelvo al escritorio
-  
+/* Cierro la conexión */
+$conexion->close();
+
+/* Vuelvo al escritorio */
+header("Location: /oscar-bryan-carlos/Chamitos_Movie_Club/back/escritorio.php");
+exit;
+
 ?>

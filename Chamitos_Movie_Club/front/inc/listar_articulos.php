@@ -6,7 +6,8 @@
  * Se incluye desde front/index.php.
  */
 
-include "db.php";
+ include __DIR__ . "/../../back/inc/db.php";
+
 
 $sql = "
 SELECT 

@@ -366,3 +366,36 @@ SELECT
 FROM puntajes pt
 JOIN usuarios u ON pt.id_usuario = u.id_usuario
 JOIN peliculas p ON pt.id_pelicula = p.id_pelicula;
+
+
+
+-- NUEVO, IMPORTANTE! HZLO ESTO
+
+ALTER TABLE puntajes
+DROP FOREIGN KEY puntajes_ibfk_2;
+
+ALTER TABLE puntajes
+ADD CONSTRAINT puntajes_ibfk_2
+FOREIGN KEY (id_pelicula)
+REFERENCES peliculas(id_pelicula)
+ON DELETE CASCADE;
+
+
+ALTER TABLE resenas
+DROP FOREIGN KEY resenas_ibfk_2;
+
+ALTER TABLE resenas
+ADD CONSTRAINT resenas_ibfk_2
+FOREIGN KEY (id_pelicula)
+REFERENCES peliculas(id_pelicula)
+ON DELETE CASCADE;
+
+
+ALTER TABLE listas_peliculas
+DROP FOREIGN KEY listas_peliculas_ibfk_2;
+
+ALTER TABLE listas_peliculas
+ADD CONSTRAINT listas_peliculas_ibfk_2
+FOREIGN KEY (id_pelicula)
+REFERENCES peliculas(id_pelicula)
+ON DELETE CASCADE;
