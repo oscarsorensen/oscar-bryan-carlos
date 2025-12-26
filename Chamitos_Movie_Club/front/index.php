@@ -21,7 +21,7 @@
   <h2>Tracker de películas</h2>
 
   <nav>
-    <a href="login.php">Login</a>
+    <a href="login.php">Login or register</a>
   </nav>
 </header>
 

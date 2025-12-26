@@ -150,7 +150,7 @@ INSERT INTO categorias (nombre_categoria) VALUES
 ('Historia');
 
 -- =========================
--- USUARIOS (5)
+-- USUARIOS (5) Backengnd users, admins. Not frontend users.
 -- =========================
 INSERT INTO usuarios (nombre, apellidos, username, password) VALUES
 ('Oscar', 'Sorensen', 'oscaradmin', 'admin'),
@@ -158,6 +158,10 @@ INSERT INTO usuarios (nombre, apellidos, username, password) VALUES
 ('Bryan', 'Avila', 'BAvila', 'Avila123'),
 ('Jose Vicente', 'Carratala', 'jocarsa', 'jocarsa123'),
 ('Laura', 'Martinez', 'lmartinez', 'password123');
+
+-- This is a frontend user for testing. It was added here for convenience.
+   6 | Oscar        | Sorensen  | OscarFrontend | Frontend123 2025-12-26 18:27:48
+   -- this can log in to backend and frontend. It shouldnt be able to log in to backend normally.
 
 -- =========================
 -- PELÍCULAS (25)
