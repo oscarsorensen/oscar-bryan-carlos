@@ -1,0 +1,455 @@
+
+*{ 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+
+}
+
+html, body{
+
+    height: 100%;
+    scroll-behavior: smooth;
+
+}
+
+body{ 
+
+    font-family: Arial, sans-serif; 
+    font-size: 15px; 
+    background-color: black; 
+
+} 
+
+nav{ 
+
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    padding: 20px 40px; 
+    z-index: 10; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 10; 
+
+} 
+
+nav ul{ 
+    
+    display: flex; 
+    list-style: none; 
+    justify-content: space-between; 
+    padding: 20px; 
+
+} 
+
+nav a{ 
+
+    text-decoration: none; 
+    color: white; 
+    position: relative; 
+
+} 
+
+nav a::after{ 
+
+    content: "";
+    position: absolute; 
+    left: 0; 
+    bottom: -4px; 
+    width: 0; 
+    height: 2px; 
+    background-color: red; 
+    transition: width 0.3s ease; 
+
+} 
+
+nav a:hover::after{ 
+
+    width: 100%; 
+
+} 
+
+.izquierda{ 
+    
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    text-decoration: none; 
+
+} 
+
+.centro{ 
+
+    display: flex; 
+    list-style: none; 
+    gap: 30px; 
+
+} 
+
+.centro ul{ 
+
+    display: flex; 
+    list-style: none; 
+    gap: 30px; 
+
+} 
+
+.centro a{ 
+
+    color: white; 
+    text-decoration: none; 
+    position: relative; 
+    font-weight: 500; 
+
+} 
+
+.derecha{ 
+
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+
+} 
+
+.logo::after{ 
+
+    content: none; 
+
+} 
+
+.registro,.inicio{ 
+
+    border-radius: 15px; 
+    background-color: red; 
+    color: white; 
+    height: 35px; 
+    width: 80px; 
+
+} 
+
+.buscador{ 
+
+    border-radius: 15px; 
+    text-align: center; 
+
+} 
+
+nav img{ 
+    
+    height: 35px; 
+    width: 40px; 
+    border-radius: 15px; 
+
+} 
+
+.menu-perfil{ 
+    
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 45px; 
+    height: 35px; 
+    background-color: red; 
+    border-radius: 15px; 
+    position: relative; 
+
+} 
+
+.perfil{ 
+    
+    border-radius: 50%; 
+    padding: 5px 10px; 
+
+} 
+
+.opciones-perfil{ 
+    
+    position: absolute; 
+    top: 100%; left: 0; 
+    background-color: grey; 
+    list-style: none; 
+    padding: 10px 0; 
+    border-radius: 10px; 
+    display: none; 
+    min-width: 150px; 
+    z-index: 20; 
+
+} 
+
+.opciones-perfil li a{ 
+    
+    color: white; 
+    text-decoration: none; 
+    display: block; 
+    padding: 8px 15px; 
+
+} 
+
+.opciones-perfil li a:hover{ 
+
+    background-color: red; 
+
+} 
+
+.menu-perfil:hover .opciones-perfil{ 
+
+    display: block; 
+
+} 
+
+.opciones-perfil a::after{ 
+
+    content: none; 
+
+} 
+
+.menu-perfil:hover{ 
+
+    background-color: darkred; 
+
+} 
+
+.registro:hover{ 
+
+    background-color: darkred; 
+
+} 
+
+.inicio:hover{ 
+
+    background-color: darkred; 
+
+} 
+
+footer ul{ 
+    
+    display: flex; 
+    list-style: none; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 0; 
+    padding: 0; 
+    gap: 50px; 
+
+} 
+
+footer a{ 
+    
+    text-decoration: none; 
+    color: white; 
+    transition: color 0.3s ease; 
+
+} 
+
+footer a:hover{ 
+    
+    color: red; 
+
+} 
+
+main.contenedor-proyectos{ 
+
+    flex: 1; 
+
+} 
+
+button{ 
+    
+    border-radius: 15%; 
+    background-color: grey; 
+    color: white; 
+
+} 
+
+footer{ 
+    
+    background-color: black; 
+    width: 100%; padding: 40px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+
+} 
+
+.izquierda a{ 
+    
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    color: white; 
+    text-decoration: none;
+
+} 
+
+nav .logo{ 
+    
+    color: red;
+
+} 
+
+footer .logo{ 
+    
+    color: red;
+
+}
+
+main.informacion{
+
+    display: flex;
+    align-items: center;        
+    justify-content: center;    
+    min-height: 100dvh;
+    background-color: black;
+    color: white;
+    padding: 0 20px;
+    gap: 30px; 
+
+}
+
+main.informacion img{
+
+    width: 180px;
+    height: auto;
+    border-radius: 8px;
+
+}
+
+.nombre-descripcion{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    max-width: 500px;
+
+}
+
+.nombre-descripcion h1{
+
+    font-size: 2.2rem;
+    margin: 0 0 12px 0;
+    color: white;
+
+}
+
+.nombre-descripcion h2 {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: grey;
+    margin: 0;
+}
+
+.contenedor-puntuacion{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+
+}
+
+.puntuacion {
+
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+
+}
+
+.estrella{
+
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: grey;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 0;
+    line-height: 1;
+    width: 40px;
+    text-align: center;
+
+}
+
+.estrella:hover,.estrella.seleccionada{
+    
+    color: gold;
+
+}
+
+.seccion-comentarios{
+
+    display: flex;
+    flex-direction: column;   
+    align-items: center;      
+    justify-content: center;  
+    gap: 20px;                
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+.seccion-comentarios h3{
+
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+
+}
+
+.formulario-comentario{
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+.input-comentario{
+
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: 2px solid grey;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    resize: vertical; 
+    box-sizing: border-box;
+}
+
+.input-comentario:focus{
+
+    outline: none;
+    border-color: red;
+
+}
+
+.boton-enviar{
+
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.boton-enviar:hover{
+
+    background-color: darkred;
+
+}
+
+.año-director{
+
+    display: flex;
+    gap: 15px;
+    margin: 8px 0 15px 0px;
+
+}
