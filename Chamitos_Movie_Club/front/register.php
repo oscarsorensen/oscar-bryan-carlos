@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Registro de usuario (versión mysqli estilo clase)
  * Crea un usuario nuevo en la tabla usuarios
@@ -57,32 +58,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Registro</title>
-<link rel="stylesheet" href="css/estilo.css">
 
+<head>
+    <meta charset="utf-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="Register.css">
+    <script src="https://kit.fontawesome.com/e3c79bde02.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
-<h1>Registro</h1>
+    <?php if ($error != ""): ?>
+        <p style="color:red"><?= $error ?></p>
+    <?php endif; ?>
 
-<?php if($error != ""): ?>
-<p style="color:red"><?= $error ?></p>
-<?php endif; ?>
+    <?php if ($success != ""): ?>
+        <p style="color:green"><?= $success ?></p>
+        <a href="login.php">Ir a login</a>
+    <?php endif; ?>
 
-<?php if($success != ""): ?>
-<p style="color:green"><?= $success ?></p>
-<a href="login.php">Ir a login</a>
-<?php endif; ?>
+    <form method="POST" action="Register.php">
+        <h1>Registro</h1>
+        <?php if ($error): ?>
+            <div style="color: orange;" class="error">⚠️ <?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
 
-<form method="POST">
-    <input type="text" name="nombre" placeholder="Nombre"><br>
-    <input type="text" name="apellidos" placeholder="Apellidos"><br>
-    <input type="text" name="username" placeholder="Usuario"><br>
-    <input type="password" name="password" placeholder="Contraseña"><br>
-    <button type="submit">Registrar</button>
-</form>
+        <?php if ($success): ?>
+            <div style="color: orange;" class="success">✅ <?= $success ?> Redirigiendo en 2 segundos...</div>
+        <?php endif; ?>
+        <div class="input-wrapper">
+            <i class="fa-regular fa-address-card"></i>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+        </div>
+
+        <div class="input-wrapper">
+            <i class="fa-regular fa-address-card"></i>
+            <input type="text" name="apellidos" placeholder="Apellidos" required>
+        </div>
+
+        <div class="input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="username" placeholder="Usuario" required>
+
+        </div>
+        <div class="input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <div class="input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="confirm" placeholder="Confirmar contraseña" required>
+        </div>
+        <div class="captcha-registro">
+            <label><input type="checkbox" name="captcha" required> ¿Eres un robot?</label>
+        </div>
+        <div class="buttons">
+            <button type="submit">Registrarse</button>
+            <button type="button" id="btnLogin">Iniciar sesion</button>
+            <script>
+                document.getElementById('btnLogin').addEventListener('click', function() {
+                    window.location.href = 'login.php';
+                });
+            </script>
+        </div>
+    </form>
 
 </body>
+
 </html>
