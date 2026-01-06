@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="watchlist.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Chamitos Movie Club </title>
+</head>
+
+<body>
+
+    <header>
+
+        <nav id="hacia-abajo">
+
+            <div class="izquierda">
+
+                <a href="#hacia-arriba" class="logo">CHAMITOS MOVIE CLUB</a>
+
+            </div>
+
+            <div class="centro">
+
+                <ul>
+
+                    <li><a
+                            href="mispeliculas.html#hacia-abajo">Mis
+                            Peliculas</a></li>
+                    <li><a
+                            href="index.html">Inicio</a>
+                    </li>
+                    <li><a
+                            href="watchlist.html">Watchlist</a>
+                    </li>
+                    <li><a
+                            href="reviews.html">Reviews</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="derecha">
+
+                <input type="text" placeholder="Buscar" class="buscador">
+
+                <div class="menu-perfil">
+
+                    <img src="/imagenes/foto-cuenta.avif" alt="" class="perfil">
+
+                    <ul class="opciones-perfil">
+
+                        <li><a
+                                href="mispeliculas.html#hacia-abajo">Mis
+                                Peliculas</a></li>
+                        <li><a
+                                href="index.html">Inicio</a>
+                        </li>
+                        <li><a
+                                href="watchlist.html">Watchlist</a>
+                        </li>
+                        <li><a
+                                href="reviews.html">Reviews</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <button class="registro" type="button" id="btnRegistrarse">Registro</button>
+                <script>
+                    document.getElementById('btnRegistrarse').addEventListener('click', function () {
+                        window.location.href = 'Register.php';
+                    });
+                </script>
+
+                <button class="inicio" type="button" id="btnLogin">Iniciar sesion</button>
+                <script>
+                    document.getElementById('btnLogin').addEventListener('click', function () {
+                        window.location.href = 'login.php';
+                    });
+                </script>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="contenedor-watchlist">
+
+            <h1>Mi Watchlist</h1>
+
+            <div class="peliculas">
+
+                <p class="mensaje">No se han añadido películas a tu watchlist.</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer id="hacia-arriba">
+
+        <div class="izquierda">
+
+            <a href="#hacia-abajo" class="logo">CHAMITOS MOVIE CLUB</a>
+
+        </div>
+
+        <ul>
+
+            <li><a href="https://x.com/?lang=es" target="_blank">X</a></li>
+            <li><a href="https://www.facebook.com/login/?locale=es_ES" target="_blank">FACEBOOK</a></li>
+            <li><a href="https://www.instagram.com/accounts/login/" target="_blank">INSTAGRAM</a></li>
+            <li><a href="https://www.tiktok.com/login?lang=es-419&redirect_url=https%3A%2F%2Fwww.tiktok.com%2Fupload%3Flang%3Des"
+                    target="_blank">TIKTOK</a></li>
+
+        </ul>
+
+    </footer>
+
+</body>
+
+</html>

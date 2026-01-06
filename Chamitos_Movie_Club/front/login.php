@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Inicio de sesión (Login)
  * Página de autenticación de usuarios.
@@ -9,13 +10,13 @@
  * http://localhost:8080/oscar-bryan-carlos/Chamitos_Movie_Club/front/login.php
  * 
  */
-	// Aquí más adelante validaremos contra la base de datos
+// Aquí más adelante validaremos contra la base de datos
 
-    //Esto arriba es que tenemos que hacer Chamitos 
+//Esto arriba es que tenemos que hacer Chamitos 
 
 
-  // Pero de momento te llevo al escritorio. Que no es guay. Escritorio es para admins (nosotros, no usuarios)
- 
+// Pero de momento te llevo al escritorio. Que no es guay. Escritorio es para admins (nosotros, no usuarios)
+
 ?>
 
 <?php
@@ -57,11 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 header("Location: profile.php");
                 exit;
-
             } else {
                 $error = "Contraseña incorrecta.";
             }
-
         } else {
             $error = "Usuario no existe.";
         }
@@ -71,27 +70,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!doctype html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<title>Login</title>
-<link rel="stylesheet" href="css/estilo.css">
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://kit.fontawesome.com/e3c79bde02.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-<h1>Login</h1>
+    <?php if ($error != ""): ?>
+        <p style="color:red"><?= $error ?></p>
+    <?php endif; ?>
 
-<?php if($error != ""): ?>
-<p style="color:red"><?= $error ?></p>
-<?php endif; ?>
+    <form method="POST">
+        <h1>Login</h1>
 
-<form method="POST">
-    <input type="text" name="username" placeholder="Usuario">
-    <input type="password" name="password" placeholder="Contraseña">
-    <button type="submit">Entrar</button>
-</form>
+        <div class="input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="username" placeholder="Usuario" required>
+        </div>
+        <div class="input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <div class="buttons">
+            <button type="submit">Iniciar Sesion</button>
+            <button type="button" id="btnRegistrarse">Registrarse</button>
 
-<a href="Register.php"><br>Crear cuenta</a>
-
+            <script>
+                document.getElementById('btnRegistrarse').addEventListener('click', function() {
+                    window.location.href = 'Register.php';
+                });
+            </script>
+        </div>
+    </form>
 </body>
+
 </html>
