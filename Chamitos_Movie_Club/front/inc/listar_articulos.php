@@ -1,13 +1,10 @@
 <?php
 /**
  * Listado de películas (Movie list)
- * Este archivo obtiene todas las películas de la base de datos
- * y las muestra en forma de listado en la página principal.
- * Se incluye desde front/index.php.
+ * Se incluye desde front/index.php
  */
 
- include __DIR__ . "/../../back/inc/db.php";
-
+include __DIR__ . "/../../back/inc/db.php";
 
 $sql = "
 SELECT 
@@ -26,9 +23,11 @@ $resultado = $conexion->query($sql);
 
 echo "<h2>All movies</h2>";
 
+echo "<div class='movie-grid'>";   // GRID WRAPPER
+
 while ($fila = $resultado->fetch_assoc()) {
     echo "
-        <article>
+        <article class='movie-card'>
             <h3>
               <a href='movie.php?id={$fila['id_pelicula']}'>
                 {$fila['nombre']}
@@ -39,8 +38,10 @@ while ($fila = $resultado->fetch_assoc()) {
             <p><strong>Release:</strong> {$fila['fecha_estreno']}</p>
             <p>{$fila['descripcion']}</p>
         </article>
-        <hr>
     ";
 }
 
+echo "</div>";  
+
 $conexion->close();
+

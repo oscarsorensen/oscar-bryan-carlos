@@ -6,8 +6,7 @@
  * Se incluye desde front/movie.php.
  */
 
- include __DIR__ . "/../../back/inc/db.php";
-
+include __DIR__ . "/../../back/inc/db.php";
 
 /* Check that the movie id exists */
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -40,18 +39,43 @@ if ($resultado->num_rows !== 1) {
 }
 
 $fila = $resultado->fetch_assoc();
+?>
 
-/* Output */
-echo "
-<article>
-    <h3>{$fila['nombre']}</h3>
-    <p><strong>Director:</strong> {$fila['director']}</p>
-    <p><strong>Category:</strong> {$fila['nombre_categoria']}</p>
-    <p><strong>Duration:</strong> {$fila['duracion_min']} min</p>
-    <p><strong>Age restriction:</strong> {$fila['restriccion_edad']}+</p>
-    <p><strong>Release date:</strong> {$fila['fecha_estreno']}</p>
-    <p>{$fila['descripcion']}</p>
-</article>
-";
+<!-- OUTPUT (HTML) -->
 
+<main class="informacion">
+
+<img
+  src="img/peliculas/<?= htmlspecialchars($fila['imagen']) ?>"
+  alt="<?= htmlspecialchars($fila['nombre']) ?>"
+>
+
+
+    <div class="nombre-descripcion">
+
+        <h1><?= htmlspecialchars(strtoupper($fila['nombre'])) ?></h1>
+
+        <div class="año-director">
+            <h3><?= htmlspecialchars($fila['fecha_estreno']) ?></h3>
+            <h3><?= htmlspecialchars($fila['director']) ?></h3>
+        </div>
+
+        <h2><?= htmlspecialchars($fila['descripcion']) ?></h2>
+
+    </div>
+
+    <div class="contenedor-puntuacion">
+        <div class="puntuacion">
+            <button class="estrella">★</button>
+            <button class="estrella">★</button>
+            <button class="estrella">★</button>
+            <button class="estrella">★</button>
+            <button class="estrella">★</button>
+        </div>
+    </div>
+
+</main>
+
+<?php
 $conexion->close();
+?>
