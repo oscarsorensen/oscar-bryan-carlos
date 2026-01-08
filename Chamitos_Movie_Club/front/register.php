@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="login.php">Ir a login</a>
     <?php endif; ?>
 
-    <form method="POST" action="Register.php">
+    <form method="POST" action="register.php">
         <h1>Registro</h1>
         <?php if ($error): ?>
             <div style="color: orange;" class="error">⚠️ <?= htmlspecialchars($error) ?></div>
