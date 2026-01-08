@@ -23,7 +23,7 @@ while ($fila = $resultado->fetch_assoc()) {
     echo "<td>".$fila['director']."</td>";
     echo "<td>".$fila['fecha_estreno']."</td>";
     echo "<td>".$fila['nombre_categoria']."</td>";
-    echo "<td><a href='?accion=editar&id=".$fila['id_pelicula']."' class='editar' title='Editar película'>🖋</a></td>";
+    echo "<td><a href='?accion=editar&id=".$fila['id_pelicula']."' class='editar' title='Editar película'>✎</a></td>";
     echo "<td><a href='?accion=eliminar&id=".$fila['id_pelicula']."' class='eliminar' title='Eliminar película'>✖</a></td>";
   echo "</tr>";
 }

@@ -1,3 +1,15 @@
++------------+--------------+-----------+---------------+--------------------------------------------------------------+---------------------+
+| id_usuario | nombre       | apellidos | username      | password                                                     | fecha_registro      |
++------------+--------------+-----------+---------------+--------------------------------------------------------------+---------------------+
+|          1 | Oscar        | Sorensen  | oscaradmin    | admin                                                        | 2025-12-19 10:18:46 |
+|          2 | Carlos       | Gallardo  | CGallardo     | Gallardo123                                                  | 2025-12-19 10:18:46 |
+|          3 | Bryan        | Avila     | BAvila        | Avila123                                                     | 2025-12-19 10:18:46 |
+|          4 | Jose Vicente | Carratala | jocarsa       | jocarsa123                                                   | 2025-12-19 10:18:46 |
+|          5 | Laura        | Martinez  | lmartinez     | password123                                                  | 2025-12-19 10:18:46 |
+|          6 | Oscar        | Sorensen  | OscarFrontend | (Password is Frontend123) $2y$12$HUPl2GTnSzqQWGJ5JQRV/.ZEGeuB9QIoEa6og56xX.ehxXleLwrXW | 2025-12-26 18:27:48 |
++------------+--------------+-----------+---------------+--------------------------------------------------------------+---------------------+
+
+
 -- Opret database
 CREATE DATABASE IF NOT EXISTS proyecto_peliculas;
 USE proyecto_peliculas;
@@ -403,3 +415,40 @@ ADD CONSTRAINT listas_peliculas_ibfk_2
 FOREIGN KEY (id_pelicula)
 REFERENCES peliculas(id_pelicula)
 ON DELETE CASCADE;
+
+
+
+# SOMETHING YOU NEED TO ADD !!
+
+ALTER TABLE usuarios
+ADD tipo_usuario ENUM('backend','frontend') NOT NULL DEFAULT 'frontend';
+
+
+UPDATE usuarios
+SET tipo_usuario = 'backend'
+WHERE id_usuario <= 5;
+
+UPDATE usuarios
+SET tipo_usuario = 'frontend'
+WHERE username = 'OscarFrontend';
+
+
+UPDATE peliculas SET imagen = 'django.jpg'        WHERE id_pelicula = 1;
+UPDATE peliculas SET imagen = 'elpad­rino.jpg'    WHERE id_pelicula = 2;
+UPDATE peliculas SET imagen = 'scarface.jpg'      WHERE id_pelicula = 3;
+UPDATE peliculas SET imagen = 'goodfellas.jpg'    WHERE id_pelicula = 4;
+UPDATE peliculas SET imagen = 'johnwick.jpg'      WHERE id_pelicula = 5;
+UPDATE peliculas SET imagen = 'clubdelalucha.jpg' WHERE id_pelicula = 6;
+
+UPDATE peliculas SET imagen = 'estreno1.jpg' WHERE id_pelicula = 7;
+UPDATE peliculas SET imagen = 'estreno2.jpg' WHERE id_pelicula = 8;
+UPDATE peliculas SET imagen = 'estreno3.jpg' WHERE id_pelicula = 9;
+UPDATE peliculas SET imagen = 'estreno4.jpg' WHERE id_pelicula = 10;
+UPDATE peliculas SET imagen = 'estreno5.jpg' WHERE id_pelicula = 11;
+UPDATE peliculas SET imagen = 'estreno6.jpg' WHERE id_pelicula = 12;
+
+UPDATE peliculas SET imagen = 'pp2.jpg' WHERE id_pelicula = 13;
+UPDATE peliculas SET imagen = 'pp3.jpg' WHERE id_pelicula = 14;
+UPDATE peliculas SET imagen = 'pp4.jpg' WHERE id_pelicula = 15;
+UPDATE peliculas SET imagen = 'pp5.jpg' WHERE id_pelicula = 16;
+UPDATE peliculas SET imagen = 'pp6.jpg' WHERE id_pelicula = 17;

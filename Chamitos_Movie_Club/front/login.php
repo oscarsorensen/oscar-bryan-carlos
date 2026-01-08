@@ -40,10 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
 
         $sql = "
-            SELECT id_usuario, username, password
-            FROM usuarios
-            WHERE username = '$username'
-        ";
+        SELECT id_usuario, username, password, tipo_usuario
+        FROM usuarios
+        WHERE username = '$username'
+    ";
+    
+    
 
         $resultado = $conexion->query($sql);
 
@@ -51,10 +53,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $fila = $resultado->fetch_assoc();
 
-            if (password_verify($password, $fila['password'])) {
+            if (
+                ($fila['tipo_usuario'] === 'frontend' && password_verify($password, $fila['password']))
+                ||
+                ($fila['tipo_usuario'] === 'backend' && $password === $fila['password'])
+            ) {
+            
 
-                $_SESSION['usuario'] = $fila['username'];
-                $_SESSION['id_usuario'] = $fila['id_usuario'];
+                $_SESSION['frontend_user'] = $fila['username'];
+                $_SESSION['frontend_user_id'] = $fila['id_usuario'];
+                $_SESSION['tipo_usuario'] = $fila['tipo_usuario'];
+                
+
 
                 header("Location: profile.php");
                 exit;
@@ -97,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="buttons">
             <button type="submit">Iniciar Sesion</button>
-            <button type="button" id="btnRegistrarse">Registrarse</button>
 
             <script>
                 document.getElementById('btnRegistrarse').addEventListener('click', function() {

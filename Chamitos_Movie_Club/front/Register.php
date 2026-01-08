@@ -18,10 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $apellidos = $_POST['apellidos'];
     $username  = $_POST['username'];
     $password  = $_POST['password'];
+    $confirm   = $_POST['confirm'];
 
-    if ($nombre == "" || $apellidos == "" || $username == "" || $password == "") {
-        $error = "Rellena todos los campos.";
-    } else {
+
+        if ($nombre == "" || $apellidos == "" || $username == "" || $password == "" || $confirm == "") {
+            $error = "Rellena todos los campos.";
+        } elseif ($password !== $confirm) {
+            $error = "Las contraseñas no coinciden.";
+        } 
+
+        else {
 
         // Verificar si el usuario existe
         $sql = "SELECT id_usuario FROM usuarios WHERE username = '$username'";
@@ -35,22 +41,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password_seguro = password_hash($password, PASSWORD_DEFAULT);
 
             $sql = "
-                INSERT INTO usuarios VALUES(
-                    NULL,
-                    '$nombre',
-                    '$apellidos',
-                    '$username',
-                    '$password_seguro',
-                    NOW()
-                )
-            ";
+            INSERT INTO usuarios (
+                nombre,
+                apellidos,
+                username,
+                password,
+                fecha_registro,
+                tipo_usuario
+            ) VALUES (
+                '$nombre',
+                '$apellidos',
+                '$username',
+                '$password_seguro',
+                NOW(),
+                'frontend'
+            )
+        ";
+        
 
             $conexion->query($sql);
 
-            $_SESSION['usuario'] = $username;
-            $_SESSION['id_usuario'] = $conexion->insert_id;
-
-            $success = "Usuario registrado correctamente.";
+            $_SESSION['frontend_user'] = $username;
+            $_SESSION['frontend_user_id'] = $conexion->insert_id;
+            $_SESSION['tipo_usuario'] = 'frontend';
+            
+            header("Location: profile.php");
+            exit;
+            
         }
     }
 }
@@ -64,28 +81,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Registro</title>
     <link rel="stylesheet" href="Register.css">
     <script src="https://kit.fontawesome.com/e3c79bde02.js" crossorigin="anonymous"></script>
+
+    <style>
+.error-message {
+    background-color: #c62828;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+    </style>
 </head>
 
 <body>
+<form method="POST" action="register.php">
 
-    <?php if ($error != ""): ?>
-        <p style="color:red"><?= $error ?></p>
-    <?php endif; ?>
-
-    <?php if ($success != ""): ?>
-        <p style="color:green"><?= $success ?></p>
-        <a href="login.php">Ir a login</a>
-    <?php endif; ?>
-
-    <form method="POST" action="register.php">
-        <h1>Registro</h1>
         <?php if ($error): ?>
-            <div style="color: orange;" class="error">⚠️ <?= htmlspecialchars($error) ?></div>
+            <div class="error-message">
+                <?= htmlspecialchars($error) ?>
+            </div>
         <?php endif; ?>
 
-        <?php if ($success): ?>
-            <div style="color: orange;" class="success">✅ <?= $success ?> Redirigiendo en 2 segundos...</div>
-        <?php endif; ?>
+
         <div class="input-wrapper">
             <i class="fa-regular fa-address-card"></i>
             <input type="text" name="nombre" placeholder="Nombre" required>
@@ -109,12 +130,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <i class="fa-solid fa-lock"></i>
             <input type="password" name="confirm" placeholder="Confirmar contraseña" required>
         </div>
-        <div class="captcha-registro">
-            <label><input type="checkbox" name="captcha" required> ¿Eres un robot?</label>
-        </div>
+
         <div class="buttons">
             <button type="submit">Registrarse</button>
-            <button type="button" id="btnLogin">Iniciar sesion</button>
             <script>
                 document.getElementById('btnLogin').addEventListener('click', function() {
                     window.location.href = 'login.php';
