@@ -1,7 +1,7 @@
 <?php
 include __DIR__ . "/../db.php";
 
-/* Traemos la película a editar */
+/* Traemos la peli espicifico a editar */
 $sql = "SELECT * FROM peliculas WHERE id_pelicula = ".$_GET['id'].";";
 
 $resultado = $conexion->query($sql);
@@ -11,7 +11,7 @@ while ($fila = $resultado->fetch_assoc()) {
 
 <form action="inc/update/procesaformulario.php" method="POST">
 
-  <!-- ID oculto (muy importante) -->
+  <!-- ID (oculto) -->
   <input type="hidden" name="id_pelicula" value="<?= $fila['id_pelicula'] ?>">
 
   <div class="controlformulario">

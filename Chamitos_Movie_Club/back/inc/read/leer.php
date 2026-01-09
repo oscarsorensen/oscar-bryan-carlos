@@ -1,6 +1,6 @@
 <table>
 <?php
-include __DIR__ . "/../db.php"; // Incluye la conexión a la base de datos __DIR__ obtiene el directorio actual
+include __DIR__ . "/../db.php"; 
 
 
 $sql = "

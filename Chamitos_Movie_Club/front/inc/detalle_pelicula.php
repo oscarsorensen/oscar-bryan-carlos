@@ -8,7 +8,7 @@
 
 include __DIR__ . "/../../back/inc/db.php";
 
-/* Check that the movie id exists */
+/* A check that the movie id exists */
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "<p>Película no válida.</p>";
     exit;
@@ -33,6 +33,7 @@ WHERE p.id_pelicula = $id_pelicula
 
 $resultado = $conexion->query($sql);
 
+/*Another chedk for movies existing or not*/ 
 if ($resultado->num_rows !== 1) {
     echo "<p>Película no encontrada.</p>";
     exit;

@@ -5,24 +5,15 @@
  * Página de autenticación de usuarios.
  * Permite a un usuario introducir su nombre de usuario y contraseña.
  * Tras un login correcto, el usuario obtiene acceso a funciones personales.
- * Esta página solo muestra el formulario; la validación se procesa en backend.
- * 
- * http://localhost:8080/oscar-bryan-carlos/Chamitos_Movie_Club/front/login.php
- * 
  */
 // Aquí más adelante validaremos contra la base de datos
 
 //Esto arriba es que tenemos que hacer Chamitos 
 
 
-// Pero de momento te llevo al escritorio. Que no es guay. Escritorio es para admins (nosotros, no usuarios)
-
 ?>
 
 <?php
-/**
- * Login de usuario (mysqli estilo clase)
- */
 
 session_start();
 

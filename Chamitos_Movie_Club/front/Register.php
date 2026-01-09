@@ -12,6 +12,8 @@ include __DIR__ . "/../back/inc/db.php";
 $error = "";
 $success = "";
 
+/*Login chec med alt det indebærer. Hashet.*/ 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $nombre    = $_POST['nombre'];
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "El nombre de usuario ya existe.";
         } else {
 
-            // HASH estilo moderno, pero con mysqli (todavía sencillo)
+            // HASH con mysqli (because why not)
             $password_seguro = password_hash($password, PASSWORD_DEFAULT);
 
             $sql = "

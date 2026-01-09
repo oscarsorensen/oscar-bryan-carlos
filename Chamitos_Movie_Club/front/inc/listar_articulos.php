@@ -24,7 +24,7 @@ $resultado = $conexion->query($sql);
 
 echo "<h2>All movies</h2>";
 
-echo "<div class='movie-grid'>";   // GRID WRAPPER
+echo "<div class='movie-grid'>";   // GRID wrapper
 
 while ($fila = $resultado->fetch_assoc()) {
   echo "

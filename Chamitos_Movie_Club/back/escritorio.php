@@ -1,20 +1,8 @@
 
 <!--
-Dette er login
-http://localhost:8080/1-Programacion/010.-Programacion-del-servidor/009-Implantacion-CRUD/Noticias-tecnologicas.web/admin/
-
-Dette er escritorio
-http://localhost:8080/1-Programacion/010.-Programacion-del-servidor/009-Implantacion-CRUD/Noticias-tecnologicas.web/admin/escritorio.php
-
-Dette er når man klikker på knappen
-http://localhost:8080/1-Programacion/010.-Programacion-del-servidor/009-Implantacion-CRUD/Noticias-tecnologicas.web/admin/escritorio.php?accion=nuevo
-
-/**
  * Escritorio de administración (Admin dashboard)
  * Página principal del backend para gestión de contenido.
  * Requiere que el usuario haya iniciado sesión como administrador.
- */
-
 -->
 
 <?php

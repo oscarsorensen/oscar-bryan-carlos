@@ -1,16 +1,11 @@
 <!-- IMPORTANTE: Este es el index de admin
 
-LOG- IN
-usuario
-password
-
 /**
  * Backend – Admin entry point
  * Este archivo actúa como puerta de entrada al backend de administración.
  * Comprueba si el usuario ha iniciado sesión como administrador.
  * - Si NO está autenticado: redirige a la página de login de admin.
  * - Si SÍ está autenticado: redirige al escritorio (dashboard).
- * No contiene HTML ni lógica de negocio.
  */
  
 -->
@@ -43,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $fila = $resultado->fetch_assoc();
 
-            // Backend = klartekst password
+            // Backend = klartekst password, forskelligt for hashet pw
             if ($contrasena === $fila['password']) {
 
                 $_SESSION['backend_user'] = $fila['username'];
