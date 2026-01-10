@@ -5,7 +5,6 @@
 }
 
 body {
-    background-image: url(img/registro/pelicula.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +14,7 @@ body {
 
 form {
     background-color: rgba(10, 9, 9, 0.815);
-    padding: 25px;
+    padding: 50px;
     border-radius: 10px;
 }
 
@@ -29,31 +28,25 @@ form .input-wrapper {
     position: relative;
 }
 
-.captcha-registro {
-    text-align: center;
-    color: red;
-    margin-bottom: 20px;
-}
-
 form .input-wrapper input {
     padding: 12px 0px 12px 50px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     outline: none;
     font-size: 15px;
-    border-radius: 12px;
+    border-radius: 15px;
 }
 
 form .input-wrapper i {
     position: absolute;
     margin-left: 20px;
-    top: 14px;
-    font-size: 20px;
-    color: darkred;
-    transition: .3 ease;
+    top: 13px;
+    font-size: 19px;
+    color: red;
+    transition: transform 0.3s ease-in-out;
 }
 
 form .input-wrapper:focus-within i {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .buttons {
@@ -70,12 +63,12 @@ button {
     background-color: whitesmoke;
     border: none;
     cursor: pointer;
-    transition: .3 ease, transform 0.25s ease;
+    transition: 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 button:hover {
-    transform: translateY(-4px);
-    background-color: darkred;
+    transform: translateY(-2px);
+    background-color: rgba(206, 14, 14, 0.884);
     color: white;
 }
 
@@ -89,3 +82,6 @@ button:hover {
     font-weight: bold;
     border: 1px solid #ffcdd2;
 }
+
+
+
