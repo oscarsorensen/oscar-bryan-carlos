@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Registro de usuario (versión mysqli estilo clase)
  * Crea un usuario nuevo en la tabla usuarios
@@ -11,15 +12,21 @@ include __DIR__ . "/../back/inc/db.php";
 $error = "";
 $success = "";
 
+/*Login chec med alt det indebærer. Hashet.*/
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $nombre    = $_POST['nombre'];
     $apellidos = $_POST['apellidos'];
     $username  = $_POST['username'];
     $password  = $_POST['password'];
+    $confirm   = $_POST['confirm'];
 
-    if ($nombre == "" || $apellidos == "" || $username == "" || $password == "") {
+
+    if ($nombre == "" || $apellidos == "" || $username == "" || $password == "" || $confirm == "") {
         $error = "Rellena todos los campos.";
+    } elseif ($password !== $confirm) {
+        $error = "Las contraseñas no coinciden.";
     } else {
 
         // Verificar si el usuario existe
@@ -30,26 +37,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "El nombre de usuario ya existe.";
         } else {
 
-            // HASH estilo moderno, pero con mysqli (todavía sencillo)
+            // HASH con mysqli (because why not)
             $password_seguro = password_hash($password, PASSWORD_DEFAULT);
 
             $sql = "
-                INSERT INTO usuarios VALUES(
-                    NULL,
-                    '$nombre',
-                    '$apellidos',
-                    '$username',
-                    '$password_seguro',
-                    NOW()
-                )
-            ";
+            INSERT INTO usuarios (
+                nombre,
+                apellidos,
+                username,
+                password,
+                fecha_registro,
+                tipo_usuario
+            ) VALUES (
+                '$nombre',
+                '$apellidos',
+                '$username',
+                '$password_seguro',
+                NOW(),
+                'frontend'
+            )
+        ";
+
 
             $conexion->query($sql);
 
-            $_SESSION['usuario'] = $username;
-            $_SESSION['id_usuario'] = $conexion->insert_id;
+            $_SESSION['frontend_user'] = $username;
+            $_SESSION['frontend_user_id'] = $conexion->insert_id;
+            $_SESSION['tipo_usuario'] = 'frontend';
 
-            $success = "Usuario registrado correctamente.";
+            header("Location: profile.php");
+            exit;
         }
     }
 }
@@ -57,32 +74,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>Registro</title>
-<link rel="stylesheet" href="css/estilo.css">
+    <meta charset="utf-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="css/Register.css">
+    <script src="https://kit.fontawesome.com/e3c79bde02.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url("img/registro/background.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
+        .error-message {
+            background-color: #c62828;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
 </head>
+
 <body>
+    <form method="POST" action="register.php">
+        <h1>Registro</h1>
 
-<h1>Registro</h1>
+        <?php if ($error): ?>
+            <div class="error-message">
+                <?= htmlspecialchars($error) ?>
+            </div>
+        <?php endif; ?>
 
-<?php if($error != ""): ?>
-<p style="color:red"><?= $error ?></p>
-<?php endif; ?>
 
-<?php if($success != ""): ?>
-<p style="color:green"><?= $success ?></p>
-<a href="login.php">Ir a login</a>
-<?php endif; ?>
+        <div class="input-wrapper">
+            <i class="fa-regular fa-address-card"></i>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+        </div>
 
-<form method="POST">
-    <input type="text" name="nombre" placeholder="Nombre"><br>
-    <input type="text" name="apellidos" placeholder="Apellidos"><br>
-    <input type="text" name="username" placeholder="Usuario"><br>
-    <input type="password" name="password" placeholder="Contraseña"><br>
-    <button type="submit">Registrar</button>
-</form>
+        <div class="input-wrapper">
+            <i class="fa-regular fa-address-card"></i>
+            <input type="text" name="apellidos" placeholder="Apellidos" required>
+        </div>
+
+        <div class="input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="username" placeholder="Usuario" required>
+
+        </div>
+        <div class="input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <div class="input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="confirm" placeholder="Confirmar contraseña" required>
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Registrarse</button>
+        </div>
+    </form>
 
 </body>
+
 </html>

@@ -26,21 +26,17 @@ session_start();
 </header>
 
 <main>
-  <?php
-    /**
-     * En esta sección se comprobará si el usuario está logueado.
-     * Si no lo está, se le redirigirá a la página de login.
-     * Si lo está, se mostrarán sus datos personales y actividad.
-     */
+<?php
 
-    if (!isset($_SESSION['usuario'])) {
-        echo "<p>Debes iniciar sesión para ver tu perfil.</p>";
-        echo '<a href="login.php">Ir al login</a>';
-    } else {
-        echo "<p>Usuario: ".$_SESSION['usuario']."</p>";
-        echo "<p>Aquí se mostrarán tus reseñas y puntuaciones.</p>";
-    }
-  ?>
+if (!isset($_SESSION['frontend_user'])) {
+    echo "<p>Debes iniciar sesión para ver tu perfil.</p>";
+    echo '<a href="login.php">Ir al login</a>';
+} else {
+    echo "<p>Usuario: " . htmlspecialchars($_SESSION['frontend_user']) . "</p>";
+    echo "<p>Aquí se mostrarán tus reseñas y puntuaciones.</p>";
+}
+?>
+
 </main>
 
 <footer>
