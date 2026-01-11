@@ -1,6 +1,7 @@
 Chamitos Movie Club
 Español
 
+
 Chamitos Movie Club es un proyecto web para gestionar y seguir películas, desarrollado como trabajo en grupo.
 El objetivo principal es aplicar los conceptos vistos en clase relacionados con bases de datos, PHP y CRUD, separando claramente backend y frontend.
 

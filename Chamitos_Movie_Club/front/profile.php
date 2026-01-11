@@ -26,6 +26,8 @@ session_start();
 </header>
 
 <main>
+
+
 <?php
 
 if (!isset($_SESSION['frontend_user'])) {
@@ -34,6 +36,7 @@ if (!isset($_SESSION['frontend_user'])) {
 } else {
     echo "<p>Usuario: " . htmlspecialchars($_SESSION['frontend_user']) . "</p>";
     echo "<p>Aquí se mostrarán tus reseñas y puntuaciones.</p>";
+
 }
 ?>
 

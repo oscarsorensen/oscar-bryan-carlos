@@ -13,6 +13,9 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "<p>Película no válida.</p>";
     exit;
 }
+if (!isset($_GET['error'])) {
+    $error = "Resena already exists ";
+}
 
 $id_pelicula = (int) $_GET['id'];
 
@@ -31,7 +34,14 @@ JOIN categorias c ON p.id_categoria = c.id_categoria
 WHERE p.id_pelicula = $id_pelicula
 ";
 
+$sql2 = "
+SELECT * FROM resenas WHERE id_pelicula = $id_pelicula
+";
+
+
 $resultado = $conexion->query($sql);
+$resenas_resultado = $conexion->query($sql2);
+
 
 /*Another chedk for movies existing or not*/ 
 if ($resultado->num_rows !== 1) {
@@ -40,6 +50,7 @@ if ($resultado->num_rows !== 1) {
 }
 
 $fila = $resultado->fetch_assoc();
+$fila_resenas = $resenas_resultado->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!-- OUTPUT (HTML) -->
@@ -75,8 +86,49 @@ $fila = $resultado->fetch_assoc();
         </div>
     </div>
 
-</main>
+    <div id="resenas">
+        <h2>Reseñas:</h2>
+        <?php
+        if (isset($_GET['error'])) {
+            echo "<p class='error-message'>" . htmlspecialchars($_GET['error']) . "</p>";
+        }
+        else if (count($fila_resenas) === 0) {
+            echo "<p>No hay reseñas para esta película.</p>";
+        } else {
+            foreach ($fila_resenas as $resena) {
+                echo "<div class='resena'>";
+                echo "<h3>Usuario ID: " . htmlspecialchars($resena['id_usuario']) . "</h3>";
+                echo "<p>" . nl2br(htmlspecialchars($resena['comentario'])) . "</p>";
+                echo "<hr>";
+                echo "</div>";
+            }
+        }
+        ?>
+    </div>
 
+</main>
+<?php
+session_start();
+if (!isset($_SESSION['frontend_user'])) {
+    echo "<p>Debes iniciar sesión para ver tu perfil.</p>";
+    echo '<a href="login.php">Ir al login</a>';
+} else {
+    echo "<p>Usuario: " . htmlspecialchars($_SESSION['frontend_user']) . "</p>";
+    echo "<p>Aquí se mostrarán tus reseñas y puntuaciones.</p>";
+    ?>
+    <form method="post" action="procesar_puntuacion.php">
+        <input type="hidden" name="id_pelicula" value="<?= $id_pelicula ?>">
+        <input type="hidden" name="id_usuario" value="<?= $_SESSION['frontend_user_id'] ?>">
+        <label for="puntuacion">Tu puntuación:</label><br>
+        <br>
+        <textarea name="comentario" type="text" rows=5 cols=40></textarea>
+    
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+        <?php
+}
+?>
 <?php
 $conexion->close();
 ?>

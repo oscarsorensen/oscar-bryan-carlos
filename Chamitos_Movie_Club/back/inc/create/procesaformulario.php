@@ -13,13 +13,15 @@ $sql = "
     director,
     fecha_estreno,
     descripcion,
-    id_categoria
+    id_categoria,
+    imagen
   ) VALUES (
     '$nombre',
     '$director',
     '$fecha_estreno',
     '$descripcion',
-    $id_categoria
+    $id_categoria,
+    'placeholder.jpg'
   )
 ";
 
