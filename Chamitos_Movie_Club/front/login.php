@@ -35,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         FROM usuarios
         WHERE username = '$username'
     ";
-    
-    
+
 
         $resultado = $conexion->query($sql);
 
@@ -49,12 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ||
                 ($fila['tipo_usuario'] === 'backend' && $password === $fila['password'])
             ) {
-            
+
 
                 $_SESSION['frontend_user'] = $fila['username'];
                 $_SESSION['frontend_user_id'] = $fila['id_usuario'];
                 $_SESSION['tipo_usuario'] = $fila['tipo_usuario'];
-                
+
 
 
                 header("Location: profile.php");
@@ -75,8 +74,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="css/login.css">
     <script src="https://kit.fontawesome.com/e3c79bde02.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url("img/login/fondo.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .error-message {
+            background-color: #c62828;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
 </head>
 
 <body>
@@ -99,11 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="buttons">
             <button type="submit">Iniciar Sesion</button>
 
-            <script>
-                document.getElementById('btnRegistrarse').addEventListener('click', function() {
-                    window.location.href = 'Register.php';
-                });
-            </script>
         </div>
     </form>
 </body>

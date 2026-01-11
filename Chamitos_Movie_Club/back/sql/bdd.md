@@ -440,12 +440,14 @@ UPDATE peliculas SET imagen = 'goodfellas.jpg'    WHERE id_pelicula = 4;
 UPDATE peliculas SET imagen = 'johnwick.jpg'      WHERE id_pelicula = 5;
 UPDATE peliculas SET imagen = 'clubdelalucha.jpg' WHERE id_pelicula = 6;
 
-UPDATE peliculas SET imagen = 'estreno1.jpg' WHERE id_pelicula = 7;
-UPDATE peliculas SET imagen = 'estreno2.jpg' WHERE id_pelicula = 8;
-UPDATE peliculas SET imagen = 'estreno3.jpg' WHERE id_pelicula = 9;
-UPDATE peliculas SET imagen = 'estreno4.jpg' WHERE id_pelicula = 10;
-UPDATE peliculas SET imagen = 'estreno5.jpg' WHERE id_pelicula = 11;
-UPDATE peliculas SET imagen = 'estreno6.jpg' WHERE id_pelicula = 12;
+
+UPDATE peliculas SET imagen = 'Estreno1.jpg' WHERE id_pelicula = 7;
+UPDATE peliculas SET imagen = 'Estreno2.jpg' WHERE id_pelicula = 8;
+UPDATE peliculas SET imagen = 'Estreno3.jpg' WHERE id_pelicula = 9;
+UPDATE peliculas SET imagen = 'Estreno4.jpg' WHERE id_pelicula = 10;
+UPDATE peliculas SET imagen = 'Estreno5.jpg' WHERE id_pelicula = 11;
+UPDATE peliculas SET imagen = 'Estreno6.jpg' WHERE id_pelicula = 12;
+
 
 UPDATE peliculas SET imagen = 'pp2.jpg' WHERE id_pelicula = 13;
 UPDATE peliculas SET imagen = 'pp3.jpg' WHERE id_pelicula = 14;

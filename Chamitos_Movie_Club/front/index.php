@@ -77,7 +77,8 @@
         <button class="registro" type="button" id="btnRegistrarse">Registro</button>
         <script>
             document.getElementById('btnRegistrarse').addEventListener('click', function () {
-                window.location.href = 'Register.php';
+                window.location.href = 'register.php';
+
             });
         </script>
 

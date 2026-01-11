@@ -12,8 +12,6 @@ include __DIR__ . "/../back/inc/db.php";
 $error = "";
 $success = "";
 
-/*Login chec med alt det indebærer. Hashet.*/ 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $nombre    = $_POST['nombre'];
@@ -23,13 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm   = $_POST['confirm'];
 
 
-        if ($nombre == "" || $apellidos == "" || $username == "" || $password == "" || $confirm == "") {
-            $error = "Rellena todos los campos.";
-        } elseif ($password !== $confirm) {
-            $error = "Las contraseñas no coinciden.";
-        } 
 
-        else {
+    if ($nombre == "" || $apellidos == "" || $username == "" || $password == "" || $confirm == "") {
+        $error = "Rellena todos los campos.";
+    } elseif ($password !== $confirm) {
+        $error = "Las contraseñas no coinciden.";
+    } else {
+
 
         // Verificar si el usuario existe
         $sql = "SELECT id_usuario FROM usuarios WHERE username = '$username'";
@@ -59,17 +57,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'frontend'
             )
         ";
-        
+
 
             $conexion->query($sql);
 
             $_SESSION['frontend_user'] = $username;
             $_SESSION['frontend_user_id'] = $conexion->insert_id;
             $_SESSION['tipo_usuario'] = 'frontend';
-            
+
             header("Location: profile.php");
             exit;
-            
+
         }
     }
 }
@@ -81,26 +79,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="utf-8">
     <title>Registro</title>
-    <link rel="stylesheet" href="Register.css">
+
+    <link rel="stylesheet" href="css/Register.css">
     <script src="https://kit.fontawesome.com/e3c79bde02.js" crossorigin="anonymous"></script>
-
     <style>
-.error-message {
-    background-color: #c62828;
-    color: white;
-    padding: 12px 16px;
-    border-radius: 6px;
-    margin-bottom: 16px;
-    text-align: center;
-    font-weight: 600;
-}
+        body {
+            background-image: url("img/registro/background.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
-
+        .error-message {
+            background-color: #c62828;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-weight: 600;
+        }
     </style>
 </head>
 
 <body>
-<form method="POST" action="register.php">
+    <form method="POST" action="register.php">
+        <h1>Registro</h1>
+
 
         <?php if ($error): ?>
             <div class="error-message">
@@ -135,11 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="buttons">
             <button type="submit">Registrarse</button>
-            <script>
-                document.getElementById('btnLogin').addEventListener('click', function() {
-                    window.location.href = 'login.php';
-                });
-            </script>
         </div>
     </form>
 
