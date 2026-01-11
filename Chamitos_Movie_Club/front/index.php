@@ -5,6 +5,9 @@
  * Muestra la lista completa de películas disponibles en la base de datos.
  * Acceso público, no requiere inicio de sesión.
  */
+
+session_start();
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -17,33 +20,69 @@
 <body>
 <header>
 
-<nav id="hacia-abajo">
-
+<nav>
   <div class="izquierda">
-    <a href="#hacia-arriba" class="logo">CHAMITOS MOVIE CLUB</a>
+    <h1 class="logo">Chamitos Movie Club</h1>
   </div>
 
   <div class="centro">
-    <input type="text" placeholder="Buscar" class="buscador">
+    <input type="text" placeholder="Buscar" class="buscador" id="buscador">
   </div>
 
   <div class="derecha">
-    <button class="registro" type="button" id="btnRegistrarse">Registro</button>
-    <button class="inicio" type="button" id="btnLogin">Iniciar sesión</button>
-  </div>
+
+
+<?php if (isset($_SESSION['frontend_user'])): ?>
+
+  <button class="inicio" onclick="location.href='profile.php'">
+    Perfil
+  </button>
+
+  <button class="registro" onclick="location.href='logout.php'">
+    Logout
+  </button>
+
+<?php else: ?>
+
+  <button class="registro" onclick="location.href='register.php'">
+    Registro
+  </button>
+
+  <button class="inicio" onclick="location.href='login.php'">
+    Login
+  </button>
+
+<?php endif; ?>
+
+</div>
+
+
 
 </nav>
 
 
 <script>
-  document.getElementById('btnRegistrarse').addEventListener('click', function () {
-    window.location.href = 'register.php';
+document.addEventListener("DOMContentLoaded", function () {
+
+
+  // Live søgning (frontend filter)
+  const buscador = document.getElementById("buscador");
+  const peliculas = document.querySelectorAll(".movie-grid article");
+
+  buscador.addEventListener("input", function () {
+    const texto = this.value.toLowerCase().trim();
+
+    peliculas.forEach(pelicula => {
+      const tituloEl = pelicula.querySelector("h3 a") || pelicula.querySelector("h3");
+      const titulo = (tituloEl ? tituloEl.innerText : "").toLowerCase();
+
+      pelicula.style.display = titulo.includes(texto) ? "" : "none";
+    });
   });
 
-  document.getElementById('btnLogin').addEventListener('click', function () {
-    window.location.href = 'login.php';
-  });
+});
 </script>
+
 
 
 

@@ -107,28 +107,39 @@ $fila_resenas = $resenas_resultado->fetch_all(MYSQLI_ASSOC);
     </div>
 
 </main>
-<?php
-session_start();
-if (!isset($_SESSION['frontend_user'])) {
-    echo "<p>Debes iniciar sesión para ver tu perfil.</p>";
-    echo '<a href="login.php">Ir al login</a>';
-} else {
-    echo "<p>Usuario: " . htmlspecialchars($_SESSION['frontend_user']) . "</p>";
-    echo "<p>Aquí se mostrarán tus reseñas y puntuaciones.</p>";
-    ?>
-    <form method="post" action="procesar_puntuacion.php">
-        <input type="hidden" name="id_pelicula" value="<?= $id_pelicula ?>">
-        <input type="hidden" name="id_usuario" value="<?= $_SESSION['frontend_user_id'] ?>">
-        <label for="puntuacion">Tu puntuación:</label><br>
-        <br>
-        <textarea name="comentario" type="text" rows=5 cols=40></textarea>
-    
-        <br>
-        <button type="submit">Enviar</button>
-    </form>
-        <?php
-}
-?>
+
+</main>
+
+<div class="bloque-usuario">
+
+<?php if (!isset($_SESSION['frontend_user'])): ?>
+
+  <p class="login-aviso">
+    Debes iniciar sesión para escribir una reseña.
+  </p>
+  <a href="login.php">Ir al login</a>
+
+<?php else: ?>
+
+  <p class="usuario-logeado">
+    Logueado como: <?= htmlspecialchars($_SESSION['frontend_user']) ?>
+  </p>
+
+  <form method="post" action="procesar_puntuacion.php">
+    <input type="hidden" name="id_pelicula" value="<?= $id_pelicula ?>">
+    <input type="hidden" name="id_usuario" value="<?= $_SESSION['frontend_user_id'] ?>">
+
+    <label for="comentario">Tu reseña:</label><br>
+    <textarea name="comentario" rows="5" cols="40"></textarea><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+<?php endif; ?>
+
+</div>
+
+
 <?php
 $conexion->close();
 ?>

@@ -6,21 +6,45 @@
  * Muestra datos como título, descripción, categoría y otra información relevante.
  * Acceso público, no requiere inicio de sesión.
  */
+
+session_start();
 ?>
+
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <title>Chamitos Movie Club - Movie</title>
-  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/movie.css">
+
+  
 </head>
 
 <body>
 
 <header>
-  <h1>Chamitos Movie Club</h1>
-  <h2>Detalle de la película</h2>
+  <div class="topbar">
+    <h1>Chamitos Movie Club</h1>
+
+    <div class="mainpa">
+  <button class="inicio" type="button" id="btnBack">Main Page</button>
+</div>
+
+    <div class="estado-usuario">
+      <?php if (isset($_SESSION['frontend_user'])): ?>
+        Conectado como <strong><?= htmlspecialchars($_SESSION['frontend_user']) ?></strong>
+      <?php else: ?>
+        No has iniciado sesión
+      <?php endif; ?>
+    </div>
+  </div>
 </header>
+<script>
+document.getElementById('btnBack').addEventListener('click', function () {
+  window.location.href = 'index.php';
+});
+</script>
+
 
 <main>
   <?php
