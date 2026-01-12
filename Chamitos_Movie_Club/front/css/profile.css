@@ -79,32 +79,57 @@
     color: var(--muted);
   }
   
-  .derecha{
-    margin-left: auto;
-    display: flex;
-    gap: 10px;
+  #resenastitle{
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 3px solid rgb(139, 0, 0);
   }
+
+/* containeren til knapperne */
+.derecha{
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+/* fælles styling for begge knapper */
+.derecha .inicio,
+.derecha .registro{
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  border: 1px solid rgba(0,0,0,0.25);
+  cursor: pointer;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 16px rgba(229,9,20,0.22);
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* hover */
+.derecha .inicio:hover,
+.derecha .registro:hover{
+  background-color: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(229,9,20,0.26);
+}
+
+/* active */
+.derecha .inicio:active,
+.derecha .registro:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(229,9,20,0.18);
+}
+
   
-  .registro,
-  .inicio{
-    height: 38px;
-    padding: 0 16px;
-    border-radius: 999px;
-    background: var(--accent);
-    color: white;
-    border: 1px solid rgba(0,0,0,0.25);
-    cursor: pointer;
-    font-weight: 650;
-    transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
-    box-shadow: 0 6px 16px rgba(229,9,20,0.22);
-  }
-  
-  .registro:hover,
-  .inicio:hover{
-    background-color: var(--accent-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(229,9,20,0.26);
-  }
+
   
   /* =========================
      MAIN
@@ -146,11 +171,14 @@
      REVIEWS
      ========================= */
   
-  .perfil-resenas{
-    display: flex;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 22px;
-  }
+     .perfil-resenas{
+      display: grid;
+      margin-left: 50px;
+      grid-template-columns: repeat(auto-fill, 190px);
+      gap: 22px;
+      justify-content: start;
+    }
+    
   
   .resena{
     display: flex;
@@ -167,7 +195,7 @@
   }
   
   .resena:hover{
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow);
     border-color: rgba(255,255,255,0.14);
   }
@@ -191,6 +219,20 @@
     font-size: 0.95rem;
     line-height: 1.55;
   }
+ 
+  
+  
+  .perfil-resenas .resena-poster{
+    width: 140px;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+  
+  
+  
   
   /* =========================
      FOOTER

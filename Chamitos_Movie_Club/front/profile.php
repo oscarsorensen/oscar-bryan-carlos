@@ -52,34 +52,47 @@ include __DIR__ . "/../back/inc/db.php";
     $id_usuario = (int) $_SESSION['frontend_user_id'];
 
     $sql = "
-      SELECT
-        r.comentario,
-        r.id_pelicula,
-        p.nombre
-      FROM resenas r
-      JOIN peliculas p ON r.id_pelicula = p.id_pelicula
-      WHERE r.id_usuario = $id_usuario
-      ORDER BY r.id_resena DESC
-    ";
+    SELECT
+      r.comentario,
+      r.id_pelicula,
+      p.nombre,
+      p.imagen
+    FROM resenas r
+    JOIN peliculas p ON r.id_pelicula = p.id_pelicula
+    WHERE r.id_usuario = $id_usuario
+    ORDER BY r.id_resena DESC
+  ";
 
     $resultado = $conexion->query($sql);
   ?>
-
+<h2 id="resenastitle">Tus reseñas</h2>
   <section class="perfil-resenas">
-    <h2>Tus reseñas</h2>
+    
 
     <?php if ($resultado->num_rows === 0): ?>
       <p>No has escrito ninguna reseña todavía.</p>
     <?php else: ?>
       <?php while ($fila = $resultado->fetch_assoc()): ?>
+       
         <article class="resena">
-          <h3>
-            <a href="movie.php?id=<?= $fila['id_pelicula'] ?>">
-              <?= htmlspecialchars($fila['nombre']) ?>
-            </a>
-          </h3>
-          <p><?= nl2br(htmlspecialchars($fila['comentario'])) ?></p>
+
+        <a href="movie.php?id=<?= $fila['id_pelicula'] ?>">
+          <img
+            src="img/peliculas/<?= htmlspecialchars($fila['imagen']) ?>"
+            alt="<?= htmlspecialchars($fila['nombre']) ?>"
+            class="resena-poster"
+          >
+        </a>
+
+        <h3>
+          <a href="movie.php?id=<?= $fila['id_pelicula'] ?>">
+            <?= htmlspecialchars($fila['nombre']) ?>
+          </a>
+        </h3>
+
+        <p><?= nl2br(htmlspecialchars($fila['comentario'])) ?></p>
         </article>
+
       <?php endwhile; ?>
     <?php endif; ?>
   </section>
