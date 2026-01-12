@@ -57,8 +57,20 @@ document.getElementById('btnBack').addEventListener('click', function () {
   ?>
 </main>
 
-<footer>
-</footer>
+<script>
+document.getElementById("reviewForm")?.addEventListener("submit", e => {
+  e.preventDefault();
+
+  fetch(e.target.action, {
+    method: "POST",
+    body: new FormData(e.target)
+  }).then(r => {
+    if (!r.ok) alert("Ya has enviado una reseña para esta película.");
+    else location.reload();
+  });
+});
+</script>
+
 
 </body>
 </html>

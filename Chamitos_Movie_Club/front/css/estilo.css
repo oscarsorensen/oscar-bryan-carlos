@@ -227,10 +227,14 @@ main h1, main h2{
   letter-spacing: 0.2px;
 }
 
-main h2{
-  font-size: 1.45rem;
-  font-weight: 800;
+h2{
+  font-size: 1.6rem;
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 8px;
+  border-bottom: 3px solid rgb(139, 0, 0);
 }
+
   
   /* =========================
    MOVIE GRID

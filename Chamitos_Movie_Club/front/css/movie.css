@@ -85,7 +85,7 @@ header{
      ========================= */
   
      main{
-        max-width: 1100px;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 28px 24px 60px;
       }
@@ -100,7 +100,9 @@ header{
     grid-template-columns: 300px 1fr;
     gap: 32px;
     align-items: start;
+    padding-left: 180px;
   }
+  
   
   /* poster */
   main.informacion img{
@@ -108,10 +110,17 @@ header{
     border-radius: var(--radius);
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   }
+
   
   /* =========================
      MOVIE TEXT INFO
      ========================= */
+
+    .nombre-descripcion{
+    max-width: 500px;
+   
+  }
+    
   
   .nombre-descripcion h1{
     font-size: 2.2rem;
@@ -164,7 +173,7 @@ header{
      ========================= */
   
   #resenas{
-    margin-top: -140px;
+    margin-top: 0px;
   }
   
   #resenas h2{
@@ -201,8 +210,8 @@ header{
      ========================= */
   
   .bloque-usuario{
-    max-width: 700px;
-    margin: 60px auto 0;
+    max-width: 500px;
+    margin: 50px 0 0;
     padding: 24px;
     background: var(--surface-2);
     border-radius: var(--radius);
@@ -236,13 +245,12 @@ header{
   .bloque-usuario form{
     display: flex;
     flex-direction: column;
-    gap: 12px;
   }
   
   .bloque-usuario textarea{
     min-height: 110px;
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 0px;
     background: #0f0f12;
     border: 1px solid var(--border);
     color: var(--text);

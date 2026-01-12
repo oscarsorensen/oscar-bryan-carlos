@@ -25,13 +25,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     )
 ";
 
-        try {
-            $conexion->query($sql);
-            header("Location: ./movie.php?id=$id_pelicula");
+    try {
+        $conexion->query($sql);
+        echo "ok";
+        exit;
 
-        } catch (PDOException $e) {
-            header("Location: ./movie.php?id=$id_pelicula&error=exists");
-        }
+    } catch (mysqli_sql_exception $e) {
+        http_response_code(400);
+        echo "error";
+        exit;
+    }
 
     
 

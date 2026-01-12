@@ -35,8 +35,12 @@ WHERE p.id_pelicula = $id_pelicula
 ";
 
 $sql2 = "
-SELECT * FROM resenas WHERE id_pelicula = $id_pelicula
+SELECT r.comentario, u.nombre
+FROM resenas r
+JOIN usuarios u ON r.id_usuario = u.id_usuario
+WHERE r.id_pelicula = $id_pelicula
 ";
+
 
 
 $resultado = $conexion->query($sql);
@@ -76,15 +80,6 @@ $fila_resenas = $resenas_resultado->fetch_all(MYSQLI_ASSOC);
 
     </div>
 
-    <div class="contenedor-puntuacion">
-        <div class="puntuacion">
-            <button class="estrella">★</button>
-            <button class="estrella">★</button>
-            <button class="estrella">★</button>
-            <button class="estrella">★</button>
-            <button class="estrella">★</button>
-        </div>
-    </div>
 
     <div id="resenas">
         <h2>Reseñas:</h2>
@@ -97,7 +92,7 @@ $fila_resenas = $resenas_resultado->fetch_all(MYSQLI_ASSOC);
         } else {
             foreach ($fila_resenas as $resena) {
                 echo "<div class='resena'>";
-                echo "<h3>Usuario ID: " . htmlspecialchars($resena['id_usuario']) . "</h3>";
+                echo "<h3>" . htmlspecialchars($resena['nombre']) . "</h3>";
                 echo "<p>" . nl2br(htmlspecialchars($resena['comentario'])) . "</p>";
                 echo "<hr>";
                 echo "</div>";
@@ -105,12 +100,7 @@ $fila_resenas = $resenas_resultado->fetch_all(MYSQLI_ASSOC);
         }
         ?>
     </div>
-
-</main>
-
-</main>
-
-<div class="bloque-usuario">
+    <div class="bloque-usuario">
 
 <?php if (!isset($_SESSION['frontend_user'])): ?>
 
@@ -125,7 +115,7 @@ $fila_resenas = $resenas_resultado->fetch_all(MYSQLI_ASSOC);
     Logueado como: <?= htmlspecialchars($_SESSION['frontend_user']) ?>
   </p>
 
-  <form method="post" action="procesar_puntuacion.php">
+  <form id="reviewForm" method="post" action="procesar_puntuacion.php">
     <input type="hidden" name="id_pelicula" value="<?= $id_pelicula ?>">
     <input type="hidden" name="id_usuario" value="<?= $_SESSION['frontend_user_id'] ?>">
 
@@ -138,6 +128,10 @@ $fila_resenas = $resenas_resultado->fetch_all(MYSQLI_ASSOC);
 <?php endif; ?>
 
 </div>
+</main>
+
+
+
 
 
 <?php
