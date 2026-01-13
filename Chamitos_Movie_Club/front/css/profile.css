@@ -1,0 +1,248 @@
+/* =========================
+   GLOBAL RESET & BASE
+   ========================= */
+
+   :root{
+    --bg: #111214;
+    --surface: #17181b;
+    --surface-2: #1e1f23;
+    --text: rgba(255,255,255,0.92);
+    --muted: rgba(255,255,255,0.68);
+    --muted-2: rgba(255,255,255,0.55);
+    --border: rgba(255,255,255,0.08);
+    --shadow: 0 10px 30px rgba(0,0,0,0.45);
+    --accent: #e50914;
+    --accent-dark: #b20710;
+    --radius: 14px;
+  }
+  
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body{
+    width: 100%;
+    height: 100%;
+  }
+  
+  body{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(1200px 600px at 50% 0%, rgba(229,9,20,0.12), transparent 60%),
+      radial-gradient(1200px 600px at 50% 100%, rgba(229,9,20,0.12), transparent 60%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 50% 0%, 50% 100%;
+    background-size: 1200px 600px, 1200px 600px;
+    background-attachment: fixed, fixed;
+  }
+  
+  /* =========================
+     HEADER
+     ========================= */
+  
+  header{
+    width: 100%;
+    background: rgba(0,0,0,0.88);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+  
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 24px;
+  }
+  
+  header h1{
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  
+  header h2{
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  
+  #resenastitle{
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 3px solid rgb(139, 0, 0);
+  }
+
+/* containeren til knapperne */
+.derecha{
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+/* fælles styling for begge knapper */
+.derecha .inicio,
+.derecha .registro{
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  border: 1px solid rgba(0,0,0,0.25);
+  cursor: pointer;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 16px rgba(229,9,20,0.22);
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* hover */
+.derecha .inicio:hover,
+.derecha .registro:hover{
+  background-color: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(229,9,20,0.26);
+}
+
+/* active */
+.derecha .inicio:active,
+.derecha .registro:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(229,9,20,0.18);
+}
+
+  
+
+  
+  /* =========================
+     MAIN
+     ========================= */
+  
+  main{
+    flex: 1;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 32px 24px 96px;
+  }
+  
+  main h2{
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  
+  /* =========================
+     PROFILE INFO
+     ========================= */
+  
+  .perfil-info{
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  }
+  
+  .perfil-info p{
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+  
+  /* =========================
+     REVIEWS
+     ========================= */
+  
+     .perfil-resenas{
+      display: grid;
+      margin-left: 50px;
+      grid-template-columns: repeat(auto-fill, 190px);
+      gap: 22px;
+      justify-content: start;
+    }
+    
+  
+  .resena{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+  
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  
+  .resena:hover{
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: rgba(255,255,255,0.14);
+  }
+  
+  .resena h3{
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  
+  .resena h3 a{
+    color: var(--text);
+    text-decoration: none;
+  }
+  
+  .resena h3 a:hover{
+    color: rgba(255,255,255,0.98);
+  }
+  
+  .resena p{
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+ 
+  
+  
+  .perfil-resenas .resena-poster{
+    width: 140px;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+  
+  
+  
+  
+  /* =========================
+     FOOTER
+     ========================= */
+  
+  footer{
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 18px 24px 26px;
+    color: var(--muted-2);
+  }
+  

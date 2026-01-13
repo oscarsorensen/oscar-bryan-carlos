@@ -47,6 +47,27 @@ if (!isset($_SESSION['backend_user'])) {
       		include "inc/read/leer.php"; 
         }
       ?>
+      <div id="lista_categorias">
+      <h3>Lista categorias </h3>
+      <ol>
+  <li>Acción</li>
+  <li>Drama</li>
+  <li>Ciencia ficción</li>
+  <li>Comedia</li>
+  <li>Thriller</li>
+  <li>Aventura</li>
+  <li>Fantasía</li>
+  <li>Romance</li>
+  <li>Terror</li>
+  <li>Animación</li>
+  <li>Documental</li>
+  <li>Crimen</li>
+  <li>Misterio</li>
+  <li>Guerra</li>
+  <li>Historia</li>
+</ol>
+</div>
+
       <a href="?accion=nuevo" id="nuevo">+</a>
     </main>
   </body>

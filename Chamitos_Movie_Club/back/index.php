@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $_POST['usuario'] ?? "";
     $contrasena = $_POST['contrasena'] ?? "";
 
+
     if ($usuario === "" || $contrasena === "") {
         $error = "Rellena todos los campos.";
     } else {

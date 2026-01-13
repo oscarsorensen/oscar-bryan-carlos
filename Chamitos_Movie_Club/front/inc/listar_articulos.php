@@ -22,7 +22,7 @@ ORDER BY p.id_pelicula ASC
 
 $resultado = $conexion->query($sql);
 
-echo "<h2>All movies</h2>";
+echo "<h2>Catálogo de películas</h2>";
 
 echo "<div class='movie-grid'>";   // GRID wrapper
 

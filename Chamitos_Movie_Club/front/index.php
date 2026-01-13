@@ -5,6 +5,9 @@
  * Muestra la lista completa de películas disponibles en la base de datos.
  * Acceso público, no requiere inicio de sesión.
  */
+
+session_start();
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -15,101 +18,73 @@
 </head>
 
 <body>
-
 <header>
 
-<nav id="hacia-abajo">
+<nav>
+  <div class="izquierda">
+    <h1 class="logo">Chamitos Movie Club</h1>
+  </div>
 
-    <div class="izquierda">
+  <div class="centro">
+    <input type="text" placeholder="Buscar" class="buscador" id="buscador">
+  </div>
 
-        <a href="#hacia-arriba" class="logo">CHAMITOS MOVIE CLUB</a>
+  <div class="derecha">
 
-    </div>
 
-    <div class="centro">
+<?php if (isset($_SESSION['frontend_user'])): ?>
 
-        <ul>
+  <button class="inicio" onclick="location.href='profile.php'">
+    Perfil
+  </button>
 
-            <li><a
-                    href="mispeliculas.html#hacia-abajo">Mis
-                    Peliculas</a></li>
-            <li><a
-                    href="index.html">Inicio</a>
-            </li>
-            <li><a
-                    href="watchlist.html">Watchlist</a>
-            </li>
-            <li><a
-                    href="reviews.html">Reviews</a>
-            </li>
+  <button class="registro" onclick="location.href='logout.php'">
+    Logout
+  </button>
 
-        </ul>
+<?php else: ?>
 
-    </div>
+  <button class="registro" onclick="location.href='register.php'">
+    Registro
+  </button>
 
-    <div class="derecha">
+  <button class="inicio" onclick="location.href='login.php'">
+    Login
+  </button>
 
-        <input type="text" placeholder="Buscar" class="buscador">
+<?php endif; ?>
 
-        <div class="menu-perfil">
+</div>
 
-            <img src="/imagenes/foto-cuenta.avif" alt="" class="perfil">
 
-          <!-- <ul class="opciones-perfil">
-
-                <li><a
-                        href="mispeliculas.html#hacia-abajo">Mis
-                        Peliculas</a></li>
-                <li><a
-                        href="index.html">Inicio</a>
-                </li>
-                <li><a
-                        href="watchlist.html">Watchlist</a>
-                </li>
-                <li><a
-                        href="reviews.html">Reviews</a>
-                </li>
-
-            </ul>
--->
-        </div>
-
-        <button class="registro" type="button" id="btnRegistrarse">Registro</button>
-        <script>
-            document.getElementById('btnRegistrarse').addEventListener('click', function () {
-                window.location.href = 'register.php';
-
-            });
-        </script>
-
-        <button class="inicio" type="button" id="btnLogin">Iniciar sesion</button>
-        <script>
-            document.getElementById('btnLogin').addEventListener('click', function () {
-                window.location.href = 'login.php';
-            });
-        </script>
-
-    </div>
 
 </nav>
 
-<section class="carrusel-caracteristicas">
 
-    <div class="carrusel">
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-        <div class="carrusel-imagenes">
 
-            <img src="/imagenes/carrusel-foto-1.jpeg" alt="">
-            <img src="/imagenes/carrusel-imagen-2.webp" alt="">
-            <img src="/imagenes/carrusel-imagen-3.jpg" alt="">
-            <img src="/imagenes/carrusel-imagen-4.jpg" alt="">
-            <img src="" alt="">
+  // Live søgning (frontend filter)
+  const buscador = document.getElementById("buscador");
+  const peliculas = document.querySelectorAll(".movie-grid article");
 
-        </div>
+  buscador.addEventListener("input", function () {
+    const texto = this.value.toLowerCase().trim();
 
-    </div>
+    peliculas.forEach(pelicula => {
+      const tituloEl = pelicula.querySelector("h3 a") || pelicula.querySelector("h3");
+      const titulo = (tituloEl ? tituloEl.innerText : "").toLowerCase();
 
-</section>
+      pelicula.style.display = titulo.includes(texto) ? "" : "none";
+    });
+  });
+
+});
+</script>
+
+
+
 
 </header>
 
