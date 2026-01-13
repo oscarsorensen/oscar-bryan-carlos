@@ -15,6 +15,7 @@
     --accent-dark: #b20710;
     --radius: 14px;
   }
+
   
   *{
     margin: 0;
@@ -323,4 +324,4 @@ footer{
   padding: 18px 24px 26px;
   color: var(--muted-2);
 }
-  
+

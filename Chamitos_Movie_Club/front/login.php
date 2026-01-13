@@ -98,9 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <?php if ($error != ""): ?>
-        <p style="color:red"><?= $error ?></p>
-    <?php endif; ?>
+
+
 
     <form method="POST">
         <h1>Login</h1>
@@ -108,6 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="input-wrapper">
             <i class="fa-solid fa-user"></i>
             <input type="text" name="username" placeholder="Usuario" required>
+            
         </div>
         <div class="input-wrapper">
             <i class="fa-solid fa-lock"></i>
@@ -117,6 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Iniciar Sesion</button>
 
         </div>
+        <?php if ($error != ""): ?>
+        <p class="error-message"><?= $error ?></p>
+    <?php endif; ?>
     </form>
 </body>
 
