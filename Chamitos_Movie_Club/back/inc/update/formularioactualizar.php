@@ -37,6 +37,7 @@ while ($fila = $resultado->fetch_assoc()) {
   <div class="controlformulario">
     <label for="id_categoria">Categoría (ID 1-15)</label>
     <input type="number" name="id_categoria" id="id_categoria" value="<?= $fila['id_categoria'] ?>">
+    <select name="id_categoria"><Option id="1">Option 1</option><Option id="2">Option 2</option></select>
   </div>
 
   <input type="submit">
