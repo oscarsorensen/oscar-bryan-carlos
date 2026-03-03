@@ -1,0 +1,10 @@
+{
+  "name": "chamitos/pruebas-cb",
+  "description": "Pruebas de caja blanca para login y validador",
+  "require": {},
+  "autoload": {
+    "files": [
+      "validador.php"
+    ]
+  }
+}

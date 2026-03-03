@@ -10,7 +10,7 @@ $conexion->query($sql);
 
 $conexion->close();
 
-header("Location: /oscar-bryan-carlos/Chamitos_Movie_Club/back/escritorio.php");
+header("Location: ../../escritorio.php");
 exit;
 
 ?>
